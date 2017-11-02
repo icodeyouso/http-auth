@@ -1,28 +1,15 @@
-var express = require('express')
-var cookieParser = require('cookie-parser')
+const express = require('express')
+const app = express()
+const cookieParser = require('cookie-parser')
+const cookieSession = require('cookie-session')
+const session = require('cookie-session')
+const bodyParser = require('body-parser')
+const path = require('path')
+const routes = require('./lib/routes')
 
-var app = express()
-app.use(cookieParser())
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'jade')
 
-app.get('/', function (req, res) {
-  res.send("hello world")
-})
-
-//COOKIE PARSER PARSES THE COOKIE HEADER AND POPULATE REQ.COOKIES WITH AN OBJECT KEYED BY THE COOKIE NAMES.
-//TO SET A NEW COOKIE DEFINE A NEW ROUTE....
-app.get('/cookie', function (req, res) {
-  res.cookie(cookie_name, 'cookie_value').send('cookie is set')
-})
-
-//TO GET A COOKIE THAT THE BROWSER MIGHT BE SENDTING TO SERVER BY ATTACHING IT TO THE REQUEST HEADER
-app.get('/', function (req, res) {
-  console.log("cookies : ", req.cookies)
-})
-
-//DELETING AN EXISTING COOKIE USING THE CLEARCOOKIE METHOD("IT ACCEPTS THE NAME OF THE COOKIE YOU WANT TO DELETE")
-app.get('/clearcookie', function (req, res) {
-  clearCookie('cookie_name')
-  res.send('Cookie deleted')
-})
+app.use(routes)
 
 app.listen(3000)
