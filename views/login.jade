@@ -1,13 +1,15 @@
+//- extends layout
+
 html(lang='en')
 	head
 		title HTTP authentication
 	body
-		h1 Sign-in
+		h1 Login
 		p Use <i>user</i> for the username and <i>pass</i> for the password.
 		form(method='post')
 			p
-				label(for='username') Username
-				input(type='text', name='username')
+				label(for='email') email
+				input(type='text', name='email')
 			p
 				label(for='password') Password
 				input(type='password', name='password')

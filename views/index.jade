@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Hello Stranger
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/signup") Signup
+    br
+    a(href="/dashboard") dashboard
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/logout") Logout
